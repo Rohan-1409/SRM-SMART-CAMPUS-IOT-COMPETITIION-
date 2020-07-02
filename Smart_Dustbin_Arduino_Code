@@ -1,0 +1,52 @@
+
+
+#define trigPin2 5 //Ultrasonic2
+#define echoPin2 4 //Ultrasonic2
+#define LED 13 //LED WIFI
+
+
+void setup()
+{
+  Serial.begin (9600);
+
+  pinMode(trigPin2, OUTPUT);    //Ultrasonic2
+  pinMode(echoPin2, INPUT);     //Ultrasonic2
+  pinMode(LED, OUTPUT);         //LED
+  
+}
+void loop()
+{
+  
+                                   
+  //Ultrasonic2                                    
+  long duration2, distance2;        
+  digitalWrite(trigPin2, LOW);        
+  delayMicroseconds(2);              
+  digitalWrite(trigPin2, HIGH);
+  delayMicroseconds(10);          
+  digitalWrite(trigPin2, LOW);
+  duration2 = pulseIn(echoPin2, HIGH);
+  distance2 = (duration2/2) / 29.1;
+ 
+  //Ultrasonic2
+ 
+  // Open Automation
+ 
+    if (distance2 >= 6 || distance2 <= 0)  //Condition When Trash close reading full or not
+    {
+      Serial.print(distance2);
+      Serial.println(" cm2");
+      digitalWrite(LED, HIGH);
+      delay(500);
+    }
+    else
+    {
+      digitalWrite(LED, LOW);
+      delay(3000);
+      Serial.println("FULL");
+ 
+    }
+ 
+ 
+  delay(500); //Reading hands
+}
