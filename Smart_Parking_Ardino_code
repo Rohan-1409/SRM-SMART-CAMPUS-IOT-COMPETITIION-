@@ -1,0 +1,38 @@
+int Ir1 = 3; // declaring pin 3 to read digital input
+int Ir2 = 4;
+//Variables:
+int value1; //save the digital value sent by ir led
+int value2;
+
+void setup(){
+  
+  pinMode(Ir1, INPUT); 
+  pinMode(Ir2, INPUT);//Set pin 3 as 'input'
+  Serial.begin(9600);       //Begin serial communication
+
+}
+
+void loop(){
+  
+  value1 = digitalRead(Ir1);   
+  value2 = digitalRead(Ir2);//Read and save digital value from ir sensor
+  if (value1==1)
+  {
+  Serial.println("Slot 1 Empty");
+  }
+  if (value1==0)
+  {
+  Serial.println("Slot 1 Full");
+  }
+  if (value2==1)
+  {
+  Serial.println("Slot 2 Empty");
+  }
+  if (value2==0)
+  {
+  Serial.println("Slot 2 Full");
+  }
+  //Print value
+  delay(3000);
+ 
+}
